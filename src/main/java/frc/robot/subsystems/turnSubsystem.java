@@ -13,27 +13,30 @@ import frc.robot.Constants;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
-
+import edu.wpi.first.wpilibj.AnalogInput;
+import edu.wpi.first.wpilibj.Encoder;
 //import frc.robot.commands.ElevatorTeleOp;
 
 public class turnSubsystem extends SubsystemBase {
   /**
-   * Creates a new turn.
+   * Creates a new Climber.
    */
   
-   TalonSRX turnTalon1;
+   TalonSRX turnTalon;
 
-
+   
+   public Encoder winchEncoder1;
+   public Encoder winchEncoder2;
+   AnalogInput liftStringPotPin;
 
    public final double HOLD_POWER = 0;
-   public final double UP_POWER = 0.;
+   public final double UP_POWER = 0.4;
    public final double DOWN_POWER = 0;
 
 
   public turnSubsystem() {
-    turnTalon1 = new TalonSRX(Constants.talonTurn1);
+    turnTalon = new TalonSRX(Constants.talonTurn1);
 
-    
 
     //winchEncoder1 = new Encoder(Constants.winch1EncoderPort1, Constants.winch1EncoderPort2);
     //winchEncoder2 = new Encoder(Constants.winch2EncoderPort1, Constants.winch2EncoderPort2);
@@ -46,20 +49,27 @@ public class turnSubsystem extends SubsystemBase {
     // This method will be called once per scheduler run
   }
 
-  public void turnG() {
-    turnTalon1.set(ControlMode.PercentOutput,UP_POWER);
+  public void Turn() {
+    turnTalon.set(ControlMode.PercentOutput, UP_POWER);
   }
 
-  public void stopTurn() {
-    turnTalon1.set(ControlMode.PercentOutput, DOWN_POWER);
+  public void StopTurn() {
+    turnTalon.set(ControlMode.PercentOutput, DOWN_POWER);
   }
 
+
+
+  public void resetEncoders() {
+    //winchEncoder1.reset();
+    //winchEncoder2.reset();
+  }
+
+ 
 
 
   public void HoldHeight() {
-    turnTalon1.set(ControlMode.PercentOutput, HOLD_POWER);
+    turnTalon.set(ControlMode.PercentOutput, HOLD_POWER);
   }
-
 
 
 

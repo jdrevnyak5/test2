@@ -18,40 +18,28 @@ public class turnCommand extends CommandBase {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(Robot.m_turn);
   }
-@Override
 
-public void initialize() {
+  // Called when the command is initially scheduled.
+  @Override
+  public void initialize() {
+  }
 
-}
+  // Called every time the scheduler runs while the command is scheduled.
+  @Override
+  public void execute() {
+    Robot.m_turn.Turn();
+  }
 
-// Called every time the scheduler runs while the command is scheduled.
+  // Called once the command ends or is interrupted.
+  @Override
+  public void end(boolean interrupted) {
+    Robot.m_turn.HoldHeight();
 
-@Override
+  }
 
-public void execute() {
-
-  Robot.m_turn.turnG();
-
-
-}
-
-// Called once the command ends or is interrupted.
-
-@Override
-
-public void end(boolean interrupted) {
-  Robot.m_turn.HoldHeight();
-
-}
-
-// Returns true when the command should end.
-
-@Override
-
-public boolean isFinished() {
-
-  return false;
-
-}
-
+  // Returns true when the command should end.
+  @Override
+  public boolean isFinished() {
+    return false;
+  }
 }
