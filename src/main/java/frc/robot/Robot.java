@@ -1,3 +1,4 @@
+  
 /*----------------------------------------------------------------------------*/
 /* Copyright (c) 2017-2019 FIRST. All Rights Reserved.                        */
 /* Open Source Software - may be modified and shared by FRC teams. The code   */
@@ -26,7 +27,9 @@ public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
 
   public static turnSubsystem m_turn;
-  //public static shootSubsystem m_shoot;
+  public static PneumaticsSubsystem m_pneumatics;
+
+  //public static Limelight m_limelight;
   //public static PhotonVision m_photonVision;
   public static RobotContainer m_robotContainer;
 
@@ -44,10 +47,12 @@ public class Robot extends TimedRobot {
     // autonomous chooser on the dashboard.
 
     m_turn = new turnSubsystem();
-    //m_shoot = new shootSubsystem();
+    m_pneumatics = new PneumaticsSubsystem();
 
+    //m_limelight = new Limelight();
     //m_photonVision = new PhotonVision();
     m_robotContainer = new RobotContainer();
+
 
     
     CameraServer.getInstance().startAutomaticCapture();
@@ -97,6 +102,7 @@ public class Robot extends TimedRobot {
     //Robot.m_drivetrain.zeroHeading();
     //Robot.m_drivetrain.resetOdometry(new Pose2d(0, 0, Rotation2d.fromDegrees(0)));
 
+    //m_autonomousCommand = m_robotContainer.getAutonomousCommand();
 
     // schedule the autonomous command (example)
     if (m_autonomousCommand != null) {
