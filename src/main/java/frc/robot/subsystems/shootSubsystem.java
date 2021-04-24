@@ -19,7 +19,7 @@ import edu.wpi.first.wpilibj.Encoder;
 
 public class shootSubsystem extends SubsystemBase {
   /**
-   * Creates a new Climber.
+   * Creates a new Shooter.
    */
   
    VictorSPX shootVictor;

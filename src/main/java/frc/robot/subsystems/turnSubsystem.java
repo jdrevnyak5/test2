@@ -19,7 +19,7 @@ import edu.wpi.first.wpilibj.Encoder;
 
 public class turnSubsystem extends SubsystemBase {
   /**
-   * Creates a new Climber.
+   * Creates a new Turner.
    */
   
    TalonSRX turnTalon;
