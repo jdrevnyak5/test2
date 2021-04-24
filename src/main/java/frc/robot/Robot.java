@@ -27,6 +27,7 @@ public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
 
   public static turnSubsystem m_turn;
+  public static shootSubsystem m_shoot;
   public static PneumaticsSubsystem m_pneumatics;
 
   //public static Limelight m_limelight;
@@ -48,6 +49,7 @@ public class Robot extends TimedRobot {
 
     m_turn = new turnSubsystem();
     m_pneumatics = new PneumaticsSubsystem();
+    m_shoot = new shootSubsystem();
 
     //m_limelight = new Limelight();
     //m_photonVision = new PhotonVision();
