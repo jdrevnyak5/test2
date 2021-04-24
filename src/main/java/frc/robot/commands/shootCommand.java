@@ -33,7 +33,7 @@ public class shootCommand extends CommandBase {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    //Robot.m_turn.HoldHeight();
+    Robot.m_shoot.StopShoot();
 
   }
 
