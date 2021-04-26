@@ -18,15 +18,15 @@ import edu.wpi.first.wpilibj.Encoder;
 //import frc.robot.commands.ElevatorTeleOp;
 
 public class turnSubsystem extends SubsystemBase {
+
   /**
-   * Creates a new Turner.
+   * Creates a new Turner. https://www.chiefdelphi.com/t/using-encoder-with-talon-srx/145483/7
    */
   
    TalonSRX turnTalon;
 
    
-   public Encoder winchEncoder1;
-   public Encoder winchEncoder2;
+   public Encoder turnEncoder;
    AnalogInput liftStringPotPin;
 
    public final double HOLD_POWER = 0;
@@ -34,14 +34,12 @@ public class turnSubsystem extends SubsystemBase {
    public final double DOWN_POWER = 0;
 
 
+
+
   public turnSubsystem() {
     turnTalon = new TalonSRX(Constants.talonTurn1);
 
 
-    //winchEncoder1 = new Encoder(Constants.winch1EncoderPort1, Constants.winch1EncoderPort2);
-    //winchEncoder2 = new Encoder(Constants.winch2EncoderPort1, Constants.winch2EncoderPort2);
-
-    //setDefaultCommand(new ElevatorTeleOp());
   } 
 
   @Override
