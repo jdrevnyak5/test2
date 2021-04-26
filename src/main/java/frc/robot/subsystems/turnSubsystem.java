@@ -11,34 +11,45 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.FeedbackDevice;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
-import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.Encoder;
-//import frc.robot.commands.ElevatorTeleOp;
 
 public class turnSubsystem extends SubsystemBase {
 
   /**
-   * Creates a new Turner. https://www.chiefdelphi.com/t/using-encoder-with-talon-srx/145483/7
+   * Creates a new Turner. 
    */
   
    TalonSRX turnTalon;
 
    
    public Encoder turnEncoder;
-   AnalogInput liftStringPotPin;
 
    public final double HOLD_POWER = 0;
-   public final double UP_POWER = 0.4;
-   public final double DOWN_POWER = 0;
+   public final double Turn_POWER = 0.4;
+   public final double Stop_POWER = 0;
+   public final double Incremental_value = 1000;
 
 
+  
 
 
   public turnSubsystem() {
     turnTalon = new TalonSRX(Constants.talonTurn1);
+    turnTalon.setNeutralMode(NeutralMode.Brake);
+    turnTalon.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute);
+  
+    /* Config Position Closed Loop gains in slot0, tsypically kF stays zero. */
+		turnTalon.config_kF(Constants.kPIDLoopIdx, Constants.kGains.kF, Constants.kTimeoutMs);
+		turnTalon.config_kP(Constants.kPIDLoopIdx, Constants.kGains.kP, Constants.kTimeoutMs);
+		turnTalon.config_kI(Constants.kPIDLoopIdx, Constants.kGains.kI, Constants.kTimeoutMs);
+		turnTalon.config_kD(Constants.kPIDLoopIdx, Constants.kGains.kD, Constants.kTimeoutMs);
 
+
+    
 
   } 
 
@@ -48,25 +59,26 @@ public class turnSubsystem extends SubsystemBase {
   }
 
   public void Turn() {
-    turnTalon.set(ControlMode.PercentOutput, UP_POWER);
-  }
+    turnTalon.set(ControlMode.Velocity, Incremental_value); 
+   }
+    
+
 
   public void StopTurn() {
-    turnTalon.set(ControlMode.PercentOutput, DOWN_POWER);
+    turnTalon.set(ControlMode.Velocity, Stop_POWER);
   }
 
 
 
   public void resetEncoders() {
-    //winchEncoder1.reset();
-    //winchEncoder2.reset();
+    turnEncoder.reset();
   }
 
  
 
 
   public void HoldHeight() {
-    turnTalon.set(ControlMode.PercentOutput, HOLD_POWER);
+    turnTalon.set(ControlMode.Position, HOLD_POWER);
   }
 
 
