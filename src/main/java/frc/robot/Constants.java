@@ -32,6 +32,7 @@ public final class Constants {
   
 
       //Climber
+  public static final int compressor = 0;
   public static final int talonTurn1 = 1; //Know'
   public static final int talonShoot = 6;
   

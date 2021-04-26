@@ -47,6 +47,11 @@ public class RobotContainer {
     public final Joystick rightJoy = new Joystick(Constants.rightJoyPort);
     public final Joystick mechJoy = new Joystick(Constants.mechJoyPort);
 
+    //Pneumatics Subsystems and Commands
+    PneumaticsSubsystem pneumaticsSubsystem = new PneumaticsSubsystem();
+    PneumaticsExtendPistonCommand pneumaticsExtendPistonCommand = new PneumaticsExtendPistonCommand(pneumaticsSubsystem);
+    PneumaticsRetractPistonCommand pneumaticsRetractPistonCommand = new PneumaticsRetractPistonCommand(pneumaticsSubsystem);
+
     public JoystickButton leftTrigger = new JoystickButton(leftJoy, 1), leftButton2 = new JoystickButton(leftJoy, 2),
             leftButton3 = new JoystickButton(leftJoy, 3), leftButton4 = new JoystickButton(leftJoy, 4),
             leftButton5 = new JoystickButton(leftJoy, 5), leftButton6 = new JoystickButton(leftJoy, 6),
@@ -106,10 +111,7 @@ public class RobotContainer {
     }
 
 
-    //Pneumatics Subsystems and Commands
-    PneumaticsSubsystem pneumaticsSubsystem = new PneumaticsSubsystem();
-    PneumaticsExtendPistonCommand pneumaticsExtendPistonCommand = new PneumaticsExtendPistonCommand(pneumaticsSubsystem);
-    PneumaticsRetractPistonCommand pneumaticsRetractPistonCommand = new PneumaticsRetractPistonCommand(pneumaticsSubsystem);
+
 
     /**
      * The container for the robot. Contains subsystems, OI devices, and commands.
