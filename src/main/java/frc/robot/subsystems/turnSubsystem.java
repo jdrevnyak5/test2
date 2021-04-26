@@ -20,7 +20,7 @@ import edu.wpi.first.wpilibj.Encoder;
 public class turnSubsystem extends SubsystemBase {
 
   /**
-   * Creates a new Turner. 
+   * Creates a new Turner. https://github.com/CrossTheRoadElec/Phoenix-Examples-Languages/blob/master/Java%20General/PositionClosedLoop/src/main/java/frc/robot/Robot.java
    */
   
    TalonSRX turnTalon;
