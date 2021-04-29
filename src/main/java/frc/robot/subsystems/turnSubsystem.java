@@ -33,6 +33,10 @@ public class turnSubsystem extends SubsystemBase {
    public final double Stop_POWER = 0;
    public final double Incremental_value = 1000;
 
+   StringBuilder _sb = new StringBuilder();
+   double targetPositionRotations;
+
+
 
   
 
@@ -40,16 +44,42 @@ public class turnSubsystem extends SubsystemBase {
   public turnSubsystem() {
     turnTalon = new TalonSRX(Constants.talonTurn1);
     turnTalon.setNeutralMode(NeutralMode.Brake);
-    turnTalon.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute);
   
-    /* Config Position Closed Loop gains in slot0, tsypically kF stays zero. */
+		/* Factory Default all hardware to prevent unexpected behaviour */
+		turnTalon.configFactoryDefault();
+		
+		/* Config the sensor used for Primary PID and sensor direction */
+        turnTalon.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute,
+                                            Constants.kPIDLoopIdx,
+				                            Constants.kTimeoutMs);
+
+		/* Ensure sensor is positive when output is positive */
+		turnTalon.setSensorPhase(Constants.kSensorPhase);
+
+		/**
+		 * Set based on what direction you want forward/positive to be.
+		 * This does not affect sensor phase. 
+		 */ 
+		turnTalon.setInverted(Constants.kMotorInvert);
+
+		/* Config the peak and nominal outputs, 12V means full */
+		turnTalon.configNominalOutputForward(0, Constants.kTimeoutMs);
+		turnTalon.configNominalOutputReverse(0, Constants.kTimeoutMs);
+		turnTalon.configPeakOutputForward(1, Constants.kTimeoutMs);
+		turnTalon.configPeakOutputReverse(-1, Constants.kTimeoutMs);
+
+		/**
+		 * Config the allowable closed-loop error, Closed-Loop output will be
+		 * neutral within this range. See Table in Section 17.2.1 for native
+		 * units per rotation.
+		 */
+		turnTalon.configAllowableClosedloopError(0, Constants.kPIDLoopIdx, Constants.kTimeoutMs);
+
+		/* Config Position Closed Loop gains in slot0, tsypically kF stays zero. */
 		turnTalon.config_kF(Constants.kPIDLoopIdx, Constants.kGains.kF, Constants.kTimeoutMs);
 		turnTalon.config_kP(Constants.kPIDLoopIdx, Constants.kGains.kP, Constants.kTimeoutMs);
 		turnTalon.config_kI(Constants.kPIDLoopIdx, Constants.kGains.kI, Constants.kTimeoutMs);
 		turnTalon.config_kD(Constants.kPIDLoopIdx, Constants.kGains.kD, Constants.kTimeoutMs);
-
-
-    
 
   } 
 
@@ -59,7 +89,17 @@ public class turnSubsystem extends SubsystemBase {
   }
 
   public void Turn() {
-    turnTalon.set(ControlMode.Velocity, Incremental_value); 
+    turnTalon.set(ControlMode.Position, Incremental_value);
+    if (turnTalon.getControlMode() == ControlMode.Position) {
+			/* ppend more signals to print when in speed mode. */
+			_sb.append("\terr:");
+			_sb.append(turnTalon.getClosedLoopError(0));
+			_sb.append("u");	// Native Units
+
+			_sb.append("\ttrg:");
+			_sb.append(targetPositionRotations);
+			_sb.append("u");	/// Native Units
+    }	
    }
     
 
