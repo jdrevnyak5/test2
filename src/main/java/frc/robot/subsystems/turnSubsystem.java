@@ -31,7 +31,7 @@ public class turnSubsystem extends SubsystemBase {
    public final double HOLD_POWER = 0;
    public final double Turn_POWER = 0.4;
    public final double Stop_POWER = 0;
-   public final double Incremental_value = 1000;
+   public final double Incremental_value = 1;
 
    StringBuilder _sb = new StringBuilder();
    double targetPositionRotations;
@@ -43,13 +43,13 @@ public class turnSubsystem extends SubsystemBase {
 
   public turnSubsystem() {
     turnTalon = new TalonSRX(Constants.talonTurn1);
-    turnTalon.setNeutralMode(NeutralMode.Brake);
+    turnTalon.setNeutralMode(NeutralMode.Coast);
   
 		/* Factory Default all hardware to prevent unexpected behaviour */
 		turnTalon.configFactoryDefault();
 		
 		/* Config the sensor used for Primary PID and sensor direction */
-        turnTalon.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute,
+        turnTalon.configSelectedFeedbackSensor(FeedbackDevice.Analog,
                                             Constants.kPIDLoopIdx,
 				                            Constants.kTimeoutMs);
 
@@ -89,23 +89,14 @@ public class turnSubsystem extends SubsystemBase {
   }
 
   public void Turn() {
-    turnTalon.set(ControlMode.Position, Incremental_value);
-    if (turnTalon.getControlMode() == ControlMode.Position) {
-			/* ppend more signals to print when in speed mode. */
-			_sb.append("\terr:");
-			_sb.append(turnTalon.getClosedLoopError(0));
-			_sb.append("u");	// Native Units
+    turnTalon.set(ControlMode.Position, Turn_POWER);
 
-			_sb.append("\ttrg:");
-			_sb.append(targetPositionRotations);
-			_sb.append("u");	/// Native Units
-    }	
    }
     
 
 
   public void StopTurn() {
-    turnTalon.set(ControlMode.Velocity, Stop_POWER);
+    turnTalon.set(ControlMode.PercentOutput, 0);
   }
 
 
