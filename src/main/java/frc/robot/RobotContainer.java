@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 
 import frc.robot.commands.*;
 import frc.robot.subsystems.PneumaticsSubsystem;
+import frc.robot.subsystems.ReloadSubsystem;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.button.*;
 
@@ -49,8 +50,15 @@ public class RobotContainer {
 
     //Pneumatics Subsystems and Commands
     PneumaticsSubsystem pneumaticsSubsystem = new PneumaticsSubsystem();
+    ReloadSubsystem reloadSubsystem = new ReloadSubsystem();
+
     PneumaticsExtendPistonCommand pneumaticsExtendPistonCommand = new PneumaticsExtendPistonCommand(pneumaticsSubsystem);
     PneumaticsRetractPistonCommand pneumaticsRetractPistonCommand = new PneumaticsRetractPistonCommand(pneumaticsSubsystem);
+
+    ReloadRetractPistonCommand reloadRetractPistonCommand = new ReloadRetractPistonCommand(reloadSubsystem);
+    ReloadExtendPistonCommand reloadExtendPistonCommand = new ReloadExtendPistonCommand(reloadSubsystem);
+
+
 
     public JoystickButton leftTrigger = new JoystickButton(leftJoy, 1), leftButton2 = new JoystickButton(leftJoy, 2),
             leftButton3 = new JoystickButton(leftJoy, 3), leftButton4 = new JoystickButton(leftJoy, 4),
@@ -145,10 +153,16 @@ public class RobotContainer {
         //left stick
 
 
-        mechButton2.whileHeld(new turnCommand());
-        mechButton2.whenReleased(new stopTurnCommand());
-        mechButton3.whileHeld(pneumaticsExtendPistonCommand);
-        mechButton4.whileHeld(pneumaticsRetractPistonCommand);
+        mechButton2.whenPressed(new turnCommand());
+        mechButton3.whenPressed(new stopTurnCommand());
+
+        mechButton6.whileHeld(pneumaticsExtendPistonCommand);
+        mechButton7.whileHeld(pneumaticsRetractPistonCommand);
+
+        mechButton4.whileHeld(reloadExtendPistonCommand);
+        mechButton5.whileHeld(reloadRetractPistonCommand);
+
+
         mechTrigger.whileHeld(new shootCommand());
 
 

@@ -19,6 +19,7 @@ public class PneumaticsExtendPistonCommand extends CommandBase {
     // Use addRequirements() here to declare subsystem dependencies.
 
     pneumaticsSubsystem = pneumatics;
+    
 
     addRequirements(pneumaticsSubsystem);
 
@@ -40,7 +41,7 @@ public class PneumaticsExtendPistonCommand extends CommandBase {
 
     pneumaticsSubsystem.extendPiston(); //This is the command to execute -- extend the 
 
-    System.out.println("Extending Piston!");
+    System.out.println("Filling Tank!");
 
   }
 

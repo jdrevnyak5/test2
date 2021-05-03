@@ -2,25 +2,26 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
-import frc.robot.subsystems.PneumaticsSubsystem;
+import frc.robot.subsystems.ReloadSubsystem;
 
-public class PneumaticsRetractPistonCommand extends CommandBase {
+public class ReloadExtendPistonCommand extends CommandBase {
 
-  private PneumaticsSubsystem pneumaticsSubsystem;
+  //Member variables will be subsystems that the command will be executed on:
 
-  /**
+  ReloadSubsystem reloadSubsystem;
 
-   * Creates a new PneumaticsRetractPistonCommand.
+  //Pass in an instance of all the required subsystems in the constructor.
 
-   */
+  //and set them to the member variables.
 
-  public PneumaticsRetractPistonCommand(PneumaticsSubsystem pneumaticsSubsystem) {
+  public ReloadExtendPistonCommand(ReloadSubsystem pneumatics) {
 
     // Use addRequirements() here to declare subsystem dependencies.
 
-    this.pneumaticsSubsystem = pneumaticsSubsystem;
+    reloadSubsystem = pneumatics;
+    
 
-    addRequirements(this.pneumaticsSubsystem);
+    addRequirements(reloadSubsystem);
 
   }
 
@@ -38,9 +39,9 @@ public class PneumaticsRetractPistonCommand extends CommandBase {
 
   public void execute() {
 
-    pneumaticsSubsystem.retractPiston();
+    reloadSubsystem.extendPiston(); //This is the command to execute -- extend the 
 
-    System.out.println("Controling Sliders!");
+    System.out.println("Extending Slider Piston!");
 
   }
 
