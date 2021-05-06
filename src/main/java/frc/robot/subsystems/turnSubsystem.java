@@ -27,7 +27,7 @@ public class turnSubsystem extends SubsystemBase {
    
 
    public final double HOLD_POWER = 0;
-   public final double Turn_POWER = 0.4 * 10.0 * 1024;
+   public final double Turn_POSITION = 0.4 * 10.0 * 1024;
    public final double Stop_POWER = 0;
    public final double Incremental_value = 1;
 
@@ -78,7 +78,6 @@ public class turnSubsystem extends SubsystemBase {
 		turnTalon.config_kP(Constants.kSlotIdx, Constants.kGains.kP, Constants.kTimeoutMs);
 		turnTalon.config_kI(Constants.kSlotIdx, Constants.kGains.kI, Constants.kTimeoutMs);
 		turnTalon.config_kD(Constants.kSlotIdx, Constants.kGains.kD, Constants.kTimeoutMs);
-
   } 
 
   @Override
@@ -89,7 +88,7 @@ public class turnSubsystem extends SubsystemBase {
   }
 
   public void Turn() {
-	turnTalon.set(ControlMode.Position, Turn_POWER);
+	turnTalon.set(ControlMode.Position, Turn_POSITION);
 	System.out.println(turnTalon.getSelectedSensorPosition(0));
 
    }
