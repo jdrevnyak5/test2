@@ -13,9 +13,7 @@ import frc.robot.Constants;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
-import edu.wpi.first.wpilibj.AnalogInput;
-import edu.wpi.first.wpilibj.Encoder;
-//import frc.robot.commands.ElevatorTeleOp;
+
 
 public class shootSubsystem extends SubsystemBase {
   /**
@@ -24,10 +22,6 @@ public class shootSubsystem extends SubsystemBase {
   
    VictorSPX shootVictor;
 
-   
-   public Encoder winchEncoder1;
-   public Encoder winchEncoder2;
-   AnalogInput liftStringPotPin;
 
    public final double HOLD_POWER = 0;
    public final double ShootPower = 1;
@@ -38,10 +32,7 @@ public class shootSubsystem extends SubsystemBase {
     shootVictor = new VictorSPX(Constants.talonShoot);
 
 
-    //winchEncoder1 = new Encoder(Constants.winch1EncoderPort1, Constants.winch1EncoderPort2);
-    //winchEncoder2 = new Encoder(Constants.winch2EncoderPort1, Constants.winch2EncoderPort2);
-
-    //setDefaultCommand(new ElevatorTeleOp());
+ 
   } 
 
   @Override
@@ -58,11 +49,6 @@ public class shootSubsystem extends SubsystemBase {
   }
 
 
-
-  public void resetEncoders() {
-    //winchEncoder1.reset();
-    //winchEncoder2.reset();
-  }
 
  
 

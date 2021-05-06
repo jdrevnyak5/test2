@@ -12,7 +12,7 @@ import frc.robot.Robot;
 
 public class shootCommand extends CommandBase {
   /**
-   * Creates a new ElevatorUp.
+   * Creates a new shoot command.
    */
   public shootCommand() {
     // Use addRequirements() here to declare subsystem dependencies.

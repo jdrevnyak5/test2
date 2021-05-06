@@ -15,7 +15,6 @@ import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
-import edu.wpi.first.wpilibj.Encoder;
 
 public class turnSubsystem extends SubsystemBase {
 
@@ -26,10 +25,9 @@ public class turnSubsystem extends SubsystemBase {
    TalonSRX turnTalon;
 
    
-   public Encoder turnEncoder;
 
    public final double HOLD_POWER = 0;
-   public final double Turn_POWER = 0.4;
+   public final double Turn_POWER = 0.4 * 10.0 * 1024;
    public final double Stop_POWER = 0;
    public final double Incremental_value = 1;
 
@@ -50,7 +48,7 @@ public class turnSubsystem extends SubsystemBase {
 		
 		/* Config the sensor used for Primary PID and sensor direction */
         turnTalon.configSelectedFeedbackSensor(FeedbackDevice.Analog,
-                                            Constants.kPIDLoopIdx,
+                                            Constants.kSlotIdx,
 				                            Constants.kTimeoutMs);
 
 		/* Ensure sensor is positive when output is positive */
@@ -73,23 +71,26 @@ public class turnSubsystem extends SubsystemBase {
 		 * neutral within this range. See Table in Section 17.2.1 for native
 		 * units per rotation.
 		 */
-		turnTalon.configAllowableClosedloopError(0, Constants.kPIDLoopIdx, Constants.kTimeoutMs);
+		turnTalon.configAllowableClosedloopError(0, Constants.kSlotIdx, Constants.kTimeoutMs);
 
 		/* Config Position Closed Loop gains in slot0, tsypically kF stays zero. */
-		turnTalon.config_kF(Constants.kPIDLoopIdx, Constants.kGains.kF, Constants.kTimeoutMs);
-		turnTalon.config_kP(Constants.kPIDLoopIdx, Constants.kGains.kP, Constants.kTimeoutMs);
-		turnTalon.config_kI(Constants.kPIDLoopIdx, Constants.kGains.kI, Constants.kTimeoutMs);
-		turnTalon.config_kD(Constants.kPIDLoopIdx, Constants.kGains.kD, Constants.kTimeoutMs);
+		turnTalon.config_kF(Constants.kSlotIdx, Constants.kGains.kF, Constants.kTimeoutMs);
+		turnTalon.config_kP(Constants.kSlotIdx, Constants.kGains.kP, Constants.kTimeoutMs);
+		turnTalon.config_kI(Constants.kSlotIdx, Constants.kGains.kI, Constants.kTimeoutMs);
+		turnTalon.config_kD(Constants.kSlotIdx, Constants.kGains.kD, Constants.kTimeoutMs);
 
   } 
 
   @Override
   public void periodic() {
-    // This method will be called once per scheduler run
+	// This method will be called once per scheduler run
+
+
   }
 
   public void Turn() {
-    turnTalon.set(ControlMode.Position, Turn_POWER);
+	turnTalon.set(ControlMode.Position, Turn_POWER);
+	System.out.println(turnTalon.getSelectedSensorPosition(0));
 
    }
     
@@ -101,10 +102,7 @@ public class turnSubsystem extends SubsystemBase {
 
 
 
-  public void resetEncoders() {
-    turnEncoder.reset();
-  }
-
+ 
  
 
 

@@ -40,7 +40,7 @@ public class PneumaticsRetractPistonCommand extends CommandBase {
 
     pneumaticsSubsystem.retractPiston();
 
-    System.out.println("Controling Sliders!");
+    System.out.println("Filling Shooter Tank!");
 
   }
 

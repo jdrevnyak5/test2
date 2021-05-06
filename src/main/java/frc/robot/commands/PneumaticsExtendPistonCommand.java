@@ -41,7 +41,7 @@ public class PneumaticsExtendPistonCommand extends CommandBase {
 
     pneumaticsSubsystem.extendPiston(); //This is the command to execute -- extend the 
 
-    System.out.println("Filling Tank!");
+    System.out.println("Reload Enabled!");
 
   }
 

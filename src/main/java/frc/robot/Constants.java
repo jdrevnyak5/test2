@@ -33,8 +33,8 @@ public final class Constants {
 
       //Climber
   public static final int compressor = 0;
-  public static final int talonTurn1 = 1; //Know'
-  public static final int talonShoot = 6;
+  public static final int talonTurn1 = 1; //Motor that turns cannon
+  public static final int talonShoot = 6; //Controller that activates the shot
   
 
 

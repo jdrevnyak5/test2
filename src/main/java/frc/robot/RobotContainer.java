@@ -156,8 +156,8 @@ public class RobotContainer {
         mechButton2.whenPressed(new turnCommand());
         mechButton3.whenPressed(new stopTurnCommand());
 
-        mechButton6.whileHeld(pneumaticsExtendPistonCommand);
-        mechButton7.whileHeld(pneumaticsRetractPistonCommand);
+        mechButton11.whileHeld(pneumaticsExtendPistonCommand);
+        mechButton10.whileHeld(pneumaticsRetractPistonCommand);
 
         mechButton4.whileHeld(reloadExtendPistonCommand);
         mechButton5.whileHeld(reloadRetractPistonCommand);
