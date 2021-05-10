@@ -27,9 +27,11 @@ public class turnSubsystem extends SubsystemBase {
    
 
    public final double HOLD_POWER = 0;
-   public final double Turn_POSITION = 0.4 * 10.0 * 1024;
+  // public final double Turn_POSITION = 0.1934 * 10.0 * 1024;
+
+   public final double Turn_POSITION = 0.1171875 * 10.0 * 1024;
    public final double Stop_POWER = 0;
-   public final double Incremental_value = 1;
+   public final double Incremental_value = 0;
 
    StringBuilder _sb = new StringBuilder();
    double targetPositionRotations;
@@ -96,7 +98,9 @@ public class turnSubsystem extends SubsystemBase {
 
 
   public void StopTurn() {
-    turnTalon.set(ControlMode.PercentOutput, 0);
+	turnTalon.set(ControlMode.PercentOutput, 0);
+	System.out.println(turnTalon.getSelectedSensorPosition(0));
+
   }
 
 

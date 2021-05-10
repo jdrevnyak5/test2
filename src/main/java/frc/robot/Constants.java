@@ -38,9 +38,6 @@ public final class Constants {
   
 
 
-  
-
-
 
       //Joysticks
   public static final int leftJoyPort = 2;
@@ -69,7 +66,7 @@ public final class Constants {
 	public static final int kTimeoutMs = 30;
 	
 	/* Choose so that Talon does not report sensor out of phase */
-	public static boolean kSensorPhase = true;
+	public static boolean kSensorPhase = false;
 
 	/**
 	 * Choose based on what direction you want to be positive,
