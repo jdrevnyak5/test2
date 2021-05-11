@@ -28,7 +28,7 @@ public class turnSubsystem extends SubsystemBase {
 
    public final double HOLD_POWER = 0;
 
-   public final double Turn_POSITION = 0.1 * 10.0 * 1024;
+   public final double Turn_POSITION = 0.1166666667 * 10.0 * 1024;
 
 
    public final double Stop_POWER = 0;
