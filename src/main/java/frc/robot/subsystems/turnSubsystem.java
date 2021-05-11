@@ -27,24 +27,24 @@ public class turnSubsystem extends SubsystemBase {
    
 
    public final double HOLD_POWER = 0;
-  // public final double Turn_POSITION = 0.1934 * 10.0 * 1024;
 
-   public final double Turn_POSITION = 0.1171875 * 10.0 * 1024;
+   public final double Turn_POSITION = 0.1 * 10.0 * 1024;
+
+
    public final double Stop_POWER = 0;
-   public final double Incremental_value = 0;
+   public final double angleExpected = 0;
 
-   StringBuilder _sb = new StringBuilder();
-   double targetPositionRotations;
+   public double turn_angle = 0;
 
+	StringBuilder _sb = new StringBuilder();
+	double targetPositionRotations;
 
+	public turnSubsystem() {
+		turnTalon = new TalonSRX(Constants.talonTurn1);
+		turnTalon.setNeutralMode(NeutralMode.Brake);
 
-  
+		turn_angle = ((turnTalon.getSelectedSensorPosition(0) % 1024) / 1024 * 30 + 0);  
 
-
-  public turnSubsystem() {
-    turnTalon = new TalonSRX(Constants.talonTurn1);
-    turnTalon.setNeutralMode(NeutralMode.Coast);
-  
 		/* Factory Default all hardware to prevent unexpected behaviour */
 		turnTalon.configFactoryDefault();
 		
@@ -90,8 +90,13 @@ public class turnSubsystem extends SubsystemBase {
   }
 
   public void Turn() {
+
 	turnTalon.set(ControlMode.Position, Turn_POSITION);
+	
+	//print sensor position and angle
 	System.out.println(turnTalon.getSelectedSensorPosition(0));
+	System.out.println(turn_angle);
+
 
    }
     
@@ -102,7 +107,6 @@ public class turnSubsystem extends SubsystemBase {
 	System.out.println(turnTalon.getSelectedSensorPosition(0));
 
   }
-
 
 
  
