@@ -18,25 +18,23 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 public class turnSubsystem extends SubsystemBase {
 
-  /**
-   * Creates a new Turner. https://github.com/CrossTheRoadElec/Phoenix-Examples-Languages/blob/master/Java%20General/PositionClosedLoop/src/main/java/frc/robot/Robot.java
-   */
-  
-   TalonSRX turnTalon;
+	private final int state = 0;
 
-   
+	/**
+	 * Creates a new Turner.
+	 * https://github.com/CrossTheRoadElec/Phoenix-Examples-Languages/blob/master/Java%20General/PositionClosedLoop/src/main/java/frc/robot/Robot.java
+	 */
 
-   public final double HOLD_POWER = 0;
+	TalonSRX turnTalon;
 
-   public final double Turn_POSITION = 0.1 * 10.0 * 1024;
-   public final double Turn_POSITION2 = 0.21666666 * 10.0 * 1024;
+	public final double HOLD_POWER = 0;
 
+	public final double Turn_POSITION = 0.1 * 10.0 * 1024;
+	public final double Turn_POSITION2 = 0.21666666 * 10.0 * 1024;
 
-   public final double Stop_POWER = 0;
+	public final double Stop_POWER = 0;
 
-   public double turn_angle = 0;
-   
-   int state = 0;
+	public double turn_angle = 0;
 
 	StringBuilder _sb = new StringBuilder();
 	double targetPositionRotations;
@@ -45,22 +43,19 @@ public class turnSubsystem extends SubsystemBase {
 		turnTalon = new TalonSRX(Constants.talonTurn1);
 		turnTalon.setNeutralMode(NeutralMode.Brake);
 
-
 		/* Factory Default all hardware to prevent unexpected behaviour */
 		turnTalon.configFactoryDefault();
-		
+
 		/* Config the sensor used for Primary PID and sensor direction */
-        turnTalon.configSelectedFeedbackSensor(FeedbackDevice.Analog,
-                                            Constants.kSlotIdx,
-				                            Constants.kTimeoutMs);
+		turnTalon.configSelectedFeedbackSensor(FeedbackDevice.Analog, Constants.kSlotIdx, Constants.kTimeoutMs);
 
 		/* Ensure sensor is positive when output is positive */
 		turnTalon.setSensorPhase(Constants.kSensorPhase);
 
 		/**
-		 * Set based on what direction you want forward/positive to be.
-		 * This does not affect sensor phase. 
-		 */ 
+		 * Set based on what direction you want forward/positive to be. This does not
+		 * affect sensor phase.
+		 */
 		turnTalon.setInverted(Constants.kMotorInvert);
 
 		/* Config the peak and nominal outputs, 12V means full */
@@ -70,9 +65,8 @@ public class turnSubsystem extends SubsystemBase {
 		turnTalon.configPeakOutputReverse(-1, Constants.kTimeoutMs);
 
 		/**
-		 * Config the allowable closed-loop error, Closed-Loop output will be
-		 * neutral within this range. See Table in Section 17.2.1 for native
-		 * units per rotation.
+		 * Config the allowable closed-loop error, Closed-Loop output will be neutral
+		 * within this range. See Table in Section 17.2.1 for native units per rotation.
 		 */
 		turnTalon.configAllowableClosedloopError(0, Constants.kSlotIdx, Constants.kTimeoutMs);
 
@@ -81,19 +75,16 @@ public class turnSubsystem extends SubsystemBase {
 		turnTalon.config_kP(Constants.kSlotIdx, Constants.kGains.kP, Constants.kTimeoutMs);
 		turnTalon.config_kI(Constants.kSlotIdx, Constants.kGains.kI, Constants.kTimeoutMs);
 		turnTalon.config_kD(Constants.kSlotIdx, Constants.kGains.kD, Constants.kTimeoutMs);
-  } 
+	}
 
-  @Override
-  public void periodic() {
-	// This method will be called once per scheduler run
+	@Override
+	public void periodic() {
+		// This method will be called once per scheduler run
+	}
 
+	public void Turn() {
 
-  }
-
-  public void Turn() {
-
-
-		turn_angle = ((turnTalon.getSelectedSensorPosition() % 1024) / 1024 * 365);  
+		turn_angle = ((turnTalon.getSelectedSensorPosition() % 1024) / 1024 * 365);
 		turnTalon.set(ControlMode.Position, Turn_POSITION);
 
 
@@ -101,7 +92,6 @@ public class turnSubsystem extends SubsystemBase {
 		//print sensor position and angle
 		System.out.println(turnTalon.getSelectedSensorPosition(0));
 		System.out.println(turn_angle);
-
 
    }
 	
@@ -141,8 +131,9 @@ public void returnToHome() {
     turnTalon.set(ControlMode.Position, HOLD_POWER);
   }
 
-  public void stateChange() {
-	  state++;
+
+  public int getState() {
+    return state;
   }
 
 

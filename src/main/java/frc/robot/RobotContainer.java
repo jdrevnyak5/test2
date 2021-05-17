@@ -10,7 +10,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
-
+import edu.wpi.first.wpilibj2.command.SelectCommand;
 import frc.robot.commands.*;
 import frc.robot.subsystems.PneumaticsSubsystem;
 import frc.robot.subsystems.ReloadSubsystem;
@@ -25,6 +25,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
 import java.text.DecimalFormat;
+import java.util.Map;
 
 
 
@@ -37,6 +38,42 @@ import java.text.DecimalFormat;
  * commands, and button mappings) should be declared here.
  */
 public class RobotContainer {
+/** 
+    private enum CommandSelector{
+        ONE,
+        TWO,
+        THREE,
+        FOUR,
+        FIVE,
+        SIX,
+        ZERO
+    }
+
+    public CommandSelector select(){
+
+        if (state == 0){
+            state = state + 1;
+            return CommandSelector.ONE;
+        }
+        else if (state == 1){
+            state = state + 1;
+            return CommandSelector.TWO;
+
+        }
+        else {
+            return CommandSelector.ZERO;
+        }
+
+    }
+
+     private final Command m_exampleSelectCommand =
+        new SelectCommand(
+            Map.ofEntries(
+                Map.entry(CommandSelector.ZERO, new returnTohome()),
+                Map.entry(CommandSelector.ONE, new turnCommand()),
+                Map.entry(CommandSelector.TWO, new secondTurn())),
+                this::select); */
+
     // The robot's subsystems and commands are defined here...
 
     private final SendableChooser<Command> m_chooser = new SendableChooser<>();
@@ -125,6 +162,7 @@ public class RobotContainer {
      * The container for the robot. Contains subsystems, OI devices, and commands.
      */
     public RobotContainer() {
+        
         // Configure the button bindings
         configureButtonBindings();
 
@@ -139,29 +177,18 @@ public class RobotContainer {
      * passing it to a {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
      */
     private void configureButtonBindings() {
-        int state = 0;
 
-        if (state == 0){
-            mechButton2.whenPressed(new turnCommand());
-            state = 1;
-        }
+        mechTrigger.whenPressed(new turnCommand());
 
-        else if (state == 1){
-            mechButton2.whenPressed(new secondTurn());
-            state = 2;
-            }
+  
+        mechButton2.whenPressed(new stopTurnCommand());
 
+        mechButton3.whenPressed(new returnTohome());
 
-        
-        
-        mechButton3.whenPressed(new stopTurnCommand());
+        mechButton7.whileHeld(pneumaticsExtendPistonCommand);
+        mechButton8.whileHeld(pneumaticsRetractPistonCommand);
 
-        mechButton7.whenPressed(new returnTohome());
-
-        mechButton11.whileHeld(pneumaticsExtendPistonCommand);
-        mechButton10.whileHeld(pneumaticsRetractPistonCommand);
-
-        mechButton4.whileHeld(reloadExtendPistonCommand);
+        mechButton6.whileHeld(reloadExtendPistonCommand);
         mechButton5.whileHeld(reloadRetractPistonCommand);
 
 

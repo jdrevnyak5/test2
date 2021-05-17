@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 
 public class turnCommand extends CommandBase {
+
   /**
    * Creates a new ElevatorUp.
    */
@@ -22,12 +23,28 @@ public class turnCommand extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-  }
+  
+}
+
+  
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-  Robot.m_turn.Turn();
+    if(Robot.m_turn.getState() == 0) {
+      Robot.m_turn.Turn();
+      System.out.println("T-Shirt 1");
+
+    } else if(Robot.m_turn.getState() == 1) {
+      System.out.println("T-Shirt 2");
+      Robot.m_turn.secondTurn();
+      }
+
+      else if(Robot.m_turn.getState() == 2) {
+        System.out.println("T-Shirt 3");
+        //Robot.m_turn.secondTurn();
+        }
+ 
 
 }
 
@@ -35,6 +52,7 @@ public class turnCommand extends CommandBase {
   @Override
   public void end(boolean interrupted) {
     Robot.m_turn.HoldHeight();
+    
 
 
   }
