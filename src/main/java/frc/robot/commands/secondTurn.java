@@ -10,11 +10,11 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 
-public class turnCommand extends CommandBase {
+public class secondTurn extends CommandBase {
   /**
    * Creates a new ElevatorUp.
    */
-  public turnCommand() {
+  public secondTurn() {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(Robot.m_turn);
   }
@@ -27,9 +27,11 @@ public class turnCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-  Robot.m_turn.Turn();
+  Robot.m_turn.secondTurn();
 
-}
+
+
+  }
 
   // Called once the command ends or is interrupted.
   @Override

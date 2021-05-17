@@ -92,39 +92,49 @@ public class turnSubsystem extends SubsystemBase {
 
   public void Turn() {
 
-	if (state == 0){
+
 		turn_angle = ((turnTalon.getSelectedSensorPosition() % 1024) / 1024 * 365);  
 		turnTalon.set(ControlMode.Position, Turn_POSITION);
-	}
 
-	if (state == 1){
-		turn_angle = ((turnTalon.getSelectedSensorPosition() % 1024) / 1024 * 365);  
-		turnTalon.set(ControlMode.Position, Turn_POSITION2);
-	}
 
 	
-	//print sensor position and angle
-	System.out.println(turnTalon.getSelectedSensorPosition(0));
-	System.out.println(turn_angle);
-	System.out.println(state);
-
-	
+		//print sensor position and angle
+		System.out.println(turnTalon.getSelectedSensorPosition(0));
+		System.out.println(turn_angle);
 
 
    }
-    
+	
+   public void secondTurn() {
+
+	turn_angle = ((turnTalon.getSelectedSensorPosition() % 1024) / 1024 * 365);  
+	turnTalon.set(ControlMode.Position, Turn_POSITION2);
+
+
+	//print sensor position and angle
+	System.out.println(turnTalon.getSelectedSensorPosition(0));
+	System.out.println(turn_angle);
+
+}	
+
+public void returnToHome() {
+
+	turn_angle = ((turnTalon.getSelectedSensorPosition() % 1024) / 1024 * 365);  
+	turnTalon.set(ControlMode.Position, 0);
+
+	//print sensor position and angle
+	System.out.println(turnTalon.getSelectedSensorPosition(0));
+	System.out.println(turn_angle);
+
+}	
 
 
   public void StopTurn() {
 	turnTalon.set(ControlMode.PercentOutput, 0);
 	System.out.println(turnTalon.getSelectedSensorPosition(0));
-	state = 0;
 
   }
 
-
- 
- 
 
 
   public void HoldHeight() {

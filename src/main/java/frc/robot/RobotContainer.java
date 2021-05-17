@@ -139,23 +139,24 @@ public class RobotContainer {
      * passing it to a {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
      */
     private void configureButtonBindings() {
-        // Example : mechButton3.whenPressed(new IntakeBall());
+        int state = 0;
 
-        // Left Hand
+        if (state == 0){
+            mechButton2.whenPressed(new turnCommand());
+            state = 1;
+        }
+
+        else if (state == 1){
+            mechButton2.whenPressed(new secondTurn());
+            state = 2;
+            }
 
 
-        // Right Hand
-
-
-        // right stick
-
-  
-        //left stick
-
-
-        mechButton2.whenPressed(new turnCommand());
+        
         
         mechButton3.whenPressed(new stopTurnCommand());
+
+        mechButton7.whenPressed(new returnTohome());
 
         mechButton11.whileHeld(pneumaticsExtendPistonCommand);
         mechButton10.whileHeld(pneumaticsRetractPistonCommand);
