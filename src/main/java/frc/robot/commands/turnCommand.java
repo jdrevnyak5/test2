@@ -20,10 +20,47 @@ public class turnCommand extends CommandBase {
     addRequirements(Robot.m_turn);
   }
 
+  boolean isFinished = false;
+
+
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-  
+    System.out.println(Robot.m_turn.getState());
+    if(Robot.m_turn.getState() == 1) {
+      Robot.m_turn.Turn();
+      System.out.println("T-Shirt 1");
+    } 
+    
+    else if(Robot.m_turn.getState() == 2) {
+      System.out.println("T-Shirt 2");
+      Robot.m_turn.secondTurn();
+      }
+
+    else if(Robot.m_turn.getState() == 3) {
+      System.out.println("T-Shirt 3");
+      Robot.m_turn.thirdTurn();
+      }
+
+    else if(Robot.m_turn.getState() == 4) {
+      System.out.println("T-Shirt 4");
+      Robot.m_turn.fourthTurn();
+      }
+
+    else if(Robot.m_turn.getState() == 5) {
+      System.out.println("T-Shirt 5");
+      Robot.m_turn.fifthTurn();
+      }
+
+    else if(Robot.m_turn.getState() == 6) {
+      System.out.println("T-Shirt 6");
+      Robot.m_turn.sixthTurn();
+      }
+
+    else{
+      System.out.println("No More Shirts");
+    }
+
 }
 
   
@@ -31,20 +68,9 @@ public class turnCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if(Robot.m_turn.getState() == 0) {
-      Robot.m_turn.Turn();
-      System.out.println("T-Shirt 1");
+  System.out.println(Robot.m_turn.getState());
+	System.out.println(Robot.m_turn.turnTalon.getSelectedSensorPosition(0));
 
-    } else if(Robot.m_turn.getState() == 1) {
-      System.out.println("T-Shirt 2");
-      Robot.m_turn.secondTurn();
-      }
-
-      else if(Robot.m_turn.getState() == 2) {
-        System.out.println("T-Shirt 3");
-        //Robot.m_turn.secondTurn();
-        }
- 
 
 }
 

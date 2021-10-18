@@ -18,19 +18,24 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 public class turnSubsystem extends SubsystemBase {
 
-	private final int state = 0;
+	private int state = 0;
 
 	/**
 	 * Creates a new Turner.
 	 * https://github.com/CrossTheRoadElec/Phoenix-Examples-Languages/blob/master/Java%20General/PositionClosedLoop/src/main/java/frc/robot/Robot.java
 	 */
 
-	TalonSRX turnTalon;
+	public TalonSRX turnTalon;
 
 	public final double HOLD_POWER = 0;
 
-	public final double Turn_POSITION = 0.1 * 10.0 * 1024;
-	public final double Turn_POSITION2 = 0.21666666 * 10.0 * 1024;
+	public final double Turn_POSITION = 360;
+	public final double Turn_POSITION2 = 480;
+	public final double Turn_POSITION3 = 720;
+	public final double Turn_POSITION4 = 960;
+	public final double Turn_POSITION5 = 1020;
+	public final double Turn_POSITION6 = 1150;
+
 
 	public final double Stop_POWER = 0;
 
@@ -87,11 +92,10 @@ public class turnSubsystem extends SubsystemBase {
 		turn_angle = ((turnTalon.getSelectedSensorPosition() % 1024) / 1024 * 365);
 		turnTalon.set(ControlMode.Position, Turn_POSITION);
 
-
-	
-		//print sensor position and angle
+		// print sensor position and angle
 		System.out.println(turnTalon.getSelectedSensorPosition(0));
 		System.out.println(turn_angle);
+		state++;
 
    }
 	
@@ -99,24 +103,88 @@ public class turnSubsystem extends SubsystemBase {
 
 	turn_angle = ((turnTalon.getSelectedSensorPosition() % 1024) / 1024 * 365);  
 	turnTalon.set(ControlMode.Position, Turn_POSITION2);
+	state++;
 
 
 	//print sensor position and angle
 	System.out.println(turnTalon.getSelectedSensorPosition(0));
 	System.out.println(turn_angle);
 
-}	
 
-public void returnToHome() {
-
-	turn_angle = ((turnTalon.getSelectedSensorPosition() % 1024) / 1024 * 365);  
-	turnTalon.set(ControlMode.Position, 0);
-
-	//print sensor position and angle
-	System.out.println(turnTalon.getSelectedSensorPosition(0));
-	System.out.println(turn_angle);
 
 }	
+
+	public void thirdTurn() {
+
+		turn_angle = ((turnTalon.getSelectedSensorPosition() % 1024) / 1024 * 365);  
+		turnTalon.set(ControlMode.Position, Turn_POSITION3);
+		state++;
+
+
+		//print sensor position and angle
+		System.out.println(turnTalon.getSelectedSensorPosition(0));
+		System.out.println(turn_angle);
+
+	}
+
+
+	public void fourthTurn() {
+
+		turn_angle = ((turnTalon.getSelectedSensorPosition() % 1024) / 1024 * 365);  
+		turnTalon.set(ControlMode.Position, Turn_POSITION4);
+		state++;
+
+
+		//print sensor position and angle
+		System.out.println(turnTalon.getSelectedSensorPosition(0));
+		System.out.println(turn_angle);
+
+	}
+
+	public void fifthTurn() {
+
+		turn_angle = ((turnTalon.getSelectedSensorPosition() % 1024) / 1024 * 365);  
+		turnTalon.set(ControlMode.Position, Turn_POSITION5);
+		state++;
+
+
+		//print sensor position and angle
+		System.out.println(turnTalon.getSelectedSensorPosition(0));
+		System.out.println(turn_angle);
+
+	}
+
+
+	public void sixthTurn() {
+
+		turn_angle = ((turnTalon.getSelectedSensorPosition() % 1024) / 1024 * 365);  
+		turnTalon.set(ControlMode.Position, Turn_POSITION6);
+		state++;
+
+
+		//print sensor position and angle
+		System.out.println(turnTalon.getSelectedSensorPosition(0));
+		System.out.println(turn_angle);
+
+	}
+
+
+
+
+
+
+
+	public void returnToHome() {
+
+		turn_angle = ((turnTalon.getSelectedSensorPosition() % 1024) / 1024 * 365);  
+		turnTalon.set(ControlMode.Position, 0);
+
+		//print sensor position and angle
+		System.out.println(turnTalon.getSelectedSensorPosition(0));
+		System.out.println(turn_angle);
+		state = 0;
+
+	}	
 
 
   public void StopTurn() {
@@ -133,7 +201,7 @@ public void returnToHome() {
 
 
   public int getState() {
-    return state;
+    return state + 1;
   }
 
 
