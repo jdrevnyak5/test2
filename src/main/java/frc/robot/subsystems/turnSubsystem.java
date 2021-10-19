@@ -29,11 +29,11 @@ public class turnSubsystem extends SubsystemBase {
 
 	public final double HOLD_POWER = 0;
 
-	public final double Turn_POSITION = 360;
-	public final double Turn_POSITION2 = 480;
-	public final double Turn_POSITION3 = 720;
-	public final double Turn_POSITION4 = 960;
-	public final double Turn_POSITION5 = 1020;
+	public final double Turn_POSITION = 344;
+	public final double Turn_POSITION2 = 633;
+	public final double Turn_POSITION3 = 1222;
+	public final double Turn_POSITION4 = 1520;
+	public final double Turn_POSITION5 = 1900;
 	public final double Turn_POSITION6 = 1150;
 
 

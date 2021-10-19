@@ -189,7 +189,7 @@ public class RobotContainer {
         mechButton5.whileHeld(reloadRetractPistonCommand);
 
 
-        mechTrigger.whileHeld(new shootCommand());
+        mechButton4.whileHeld(new shootCommand());
 
 
     }
