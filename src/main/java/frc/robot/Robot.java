@@ -28,6 +28,7 @@ public class Robot extends TimedRobot {
 
   public static turnSubsystem m_turn;
   public static shootSubsystem m_shoot;
+  public static hornSubsystem m_horn;
   
 
   //public static Limelight m_limelight;
@@ -49,6 +50,7 @@ public class Robot extends TimedRobot {
 
     m_turn = new turnSubsystem();
     m_shoot = new shootSubsystem();
+    m_horn = new hornSubsystem();
     
 
     //m_limelight = new Limelight();
