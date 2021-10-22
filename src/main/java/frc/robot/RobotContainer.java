@@ -9,11 +9,14 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.commands.*;
 import frc.robot.subsystems.PneumaticsSubsystem;
 import frc.robot.subsystems.ReloadSubsystem;
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.SpeedControllerGroup;
+import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj2.command.button.*;
 
 
@@ -35,46 +38,14 @@ import java.text.DecimalFormat;
  * commands, and button mappings) should be declared here.
  */
 public class RobotContainer {
-/** 
-    private enum CommandSelector{
-        ONE,
-        TWO,
-        THREE,
-        FOUR,
-        FIVE,
-        SIX,
-        ZERO
-    }
 
-    public CommandSelector select(){
-
-        if (state == 0){
-            state = state + 1;
-            return CommandSelector.ONE;
-        }
-        else if (state == 1){
-            state = state + 1;
-            return CommandSelector.TWO;
-
-        }
-        else {
-            return CommandSelector.ZERO;
-        }
-
-    }
-
-     private final Command m_exampleSelectCommand =
-        new SelectCommand(
-            Map.ofEntries(
-                Map.entry(CommandSelector.ZERO, new returnTohome()),
-                Map.entry(CommandSelector.ONE, new turnCommand()),
-                Map.entry(CommandSelector.TWO, new secondTurn())),
-                this::select); */
-
-    // The robot's subsystems and commands are defined here...
+    
 
     private final SendableChooser<Command> m_chooser = new SendableChooser<>();
     public DecimalFormat decimalScale = new DecimalFormat("#,###.##");
+
+
+
 
 
 
@@ -194,4 +165,7 @@ public class RobotContainer {
 
 
     }
+
+   
+
 }

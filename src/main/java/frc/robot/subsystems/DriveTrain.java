@@ -7,39 +7,21 @@
 
 package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj.Talon;
+import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.commands.Drive;
+import frc.robot.Robot;
+import frc.robot.RobotContainer;
 
 
 
 
 public class DriveTrain extends SubsystemBase {
-    
-    private Talon motorLeft1 = new Talon(1);
-    private Talon motorLeft2 = new Talon(2);
-    private Talon motorRight1 = new Talon(3);
-    private Talon motorRight2 = new Talon(4);
-    
-    public void setLeftMotors (double speed){
-        motorLeft1.set(-speed);
-        motorLeft2.set(-speed);
-    }
-    
-    public void setRightMotors (double speed){
-        motorRight1.set(speed);
-        motorRight2.set(speed);
-    }
 
+  private final DifferentialDrive robotDrive = Robot.m_drive;
 
-  public DriveTrain() {
-
-}
-
-
-  @Override
-  public void periodic() {
-    // This method will be called once per scheduler run
+  
+  public void driveWithJoystick(double m_left, double m_right) {
+      robotDrive.arcadeDrive(m_left, m_right);
   }
-
 }
+

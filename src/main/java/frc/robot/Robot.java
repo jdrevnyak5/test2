@@ -1,4 +1,4 @@
-  
+
 /*----------------------------------------------------------------------------*/
 /* Copyright (c) 2017-2019 FIRST. All Rights Reserved.                        */
 /* Open Source Software - may be modified and shared by FRC teams. The code   */
@@ -8,7 +8,10 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj.SpeedControllerGroup;
+import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.subsystems.*;
@@ -29,12 +32,28 @@ public class Robot extends TimedRobot {
   public static turnSubsystem m_turn;
   public static shootSubsystem m_shoot;
   public static hornSubsystem m_horn;
-  public static DriveTrain driveTrain = new DriveTrain();
+  public static DriveTrain driveTrain;
+
+  public static Talon m_frontLeft = new Talon(1);
+  public static Talon m_rearLeft = new Talon(2);
+  static SpeedControllerGroup m_left = new SpeedControllerGroup(m_frontLeft, m_rearLeft);
+
+  public static Talon m_frontRight = new Talon(3);
+  public static Talon m_rearRight = new Talon(4);
+  public static SpeedControllerGroup m_right = new SpeedControllerGroup(m_frontLeft, m_rearLeft);
+  
+  public static DifferentialDrive m_drive = new DifferentialDrive(m_left, m_right);
+
+
+
+  
   
 
   //public static Limelight m_limelight;
   //public static PhotonVision m_photonVision;
   public static RobotContainer m_robotContainer;
+
+  
 
 
   CvSink cvSink;
@@ -52,6 +71,8 @@ public class Robot extends TimedRobot {
     m_turn = new turnSubsystem();
     m_shoot = new shootSubsystem();
     m_horn = new hornSubsystem();
+    driveTrain = new DriveTrain();
+
     
 
     //m_limelight = new Limelight();

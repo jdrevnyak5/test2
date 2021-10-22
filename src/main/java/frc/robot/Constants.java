@@ -16,15 +16,6 @@ package frc.robot;
  * constants are needed, to reduce verbosity.
  */
 public final class Constants {
-      //Drivetrain
-    //   public static final int frontLeftDrivePort = 2;  This stuff is the actual competition ports
-    //   public static final int frontRightDrivePort = 1; 
-    //   public static final int backLeftDrivePort = 3; 
-    //   public static final int backRightDrivePort = 0; 
-
-
-
-      //compressors
 
   
 
@@ -35,8 +26,6 @@ public final class Constants {
   public static final int talonHorn = 7; //Controller that activates the horn
 
   
-
-
 
       //Joysticks
   public static final int leftJoyPort = 2;
