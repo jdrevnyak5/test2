@@ -80,7 +80,7 @@ public class RobotContainer {
 
     public final Joystick leftJoy = new Joystick(Constants.leftJoyPort);
     public final Joystick rightJoy = new Joystick(Constants.rightJoyPort);
-    public final Joystick mechJoy = new Joystick(Constants.mechJoyPort);
+    public final static Joystick mechJoy = new Joystick(Constants.mechJoyPort);
 
     //Pneumatics Subsystems and Commands
     PneumaticsSubsystem pneumaticsSubsystem = new PneumaticsSubsystem();
@@ -182,15 +182,15 @@ public class RobotContainer {
 
         mechButton3.whenPressed(new returnTohome());
 
-        mechButton7.whileHeld(pneumaticsExtendPistonCommand);
-        mechButton8.whileHeld(pneumaticsRetractPistonCommand);
+        //mechButton7.whileHeld(pneumaticsExtendPistonCommand);
+        //mechButton8.whileHeld(pneumaticsRetractPistonCommand);
 
         mechButton5.whileHeld(reloadExtendPistonCommand);
         mechButton4.whileHeld(reloadRetractPistonCommand);
 
 
         mechButton9.whileHeld(new shootCommand());
-        mechButton6.whileHeld(new hornCommand());
+        mechButton8.whileHeld(new hornCommand());
 
 
     }

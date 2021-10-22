@@ -21,10 +21,7 @@ public final class Constants {
     //   public static final int frontRightDrivePort = 1; 
     //   public static final int backLeftDrivePort = 3; 
     //   public static final int backRightDrivePort = 0; 
-    //public static final int frontLeftDrivePort = 0;  //talon; this stuff is for when I (Prithvi) tested the code on Demobot
-    //public static final int frontRightDrivePort = 1; //talon
-    // public static final int backLeftDrivePort = 2;   //victor
-    //public static final int backRightDrivePort = 3;  //victor
+
 
 
       //compressors
