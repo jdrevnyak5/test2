@@ -9,14 +9,12 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
-import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.commands.*;
+import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.PneumaticsSubsystem;
 import frc.robot.subsystems.ReloadSubsystem;
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.SpeedControllerGroup;
-import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj2.command.button.*;
 
 
@@ -43,6 +41,7 @@ public class RobotContainer {
 
     private final SendableChooser<Command> m_chooser = new SendableChooser<>();
     public DecimalFormat decimalScale = new DecimalFormat("#,###.##");
+    private final Drivetrain m_drivetrain = new Drivetrain();
 
 
 
@@ -148,7 +147,8 @@ public class RobotContainer {
 
         mechTrigger.whenPressed(new turnCommand());
 
-  
+        m_drivetrain.setDefaultCommand(getArcadeDriveCommand());
+
         mechButton2.whenPressed(new stopTurnCommand());
 
         mechButton3.whenPressed(new returnTohome());
@@ -162,9 +162,22 @@ public class RobotContainer {
 
         mechButton9.whileHeld(new shootCommand());
         mechButton8.whileHeld(new hornCommand());
-
-
     }
+
+/**
+   * Use this to pass the teleop command to the main {@link Robot} class.
+   *
+   * @return the command to run in teleop
+   */
+  public Command getArcadeDriveCommand() {
+    return new ArcadeDrive(
+        m_drivetrain, () -> -rightJoy.getRawAxis(1), () -> rightJoy.getRawAxis(2));
+  }
+
+
+
+
+    
 
    
 
